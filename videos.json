@@ -1,8 +1,15 @@
 {
   "channel_id": "UC2ySL7KgQTPvarTU29xisNQ",
   "channel_url": "https://www.youtube.com/@AmbientPassageCo",
-  "last_updated": "2026-04-30T11:00:11.973320+00:00",
+  "last_updated": "2026-05-01T11:00:11.907496+00:00",
   "videos": [
+    {
+      "id": "3ZVMUlqgAQs",
+      "title": "Heavy Rain on Window Sounds 😴 #Shorts",
+      "duration": "8 Hours",
+      "published": "2026-04-30T23:00:07+00:00",
+      "url": "https://www.youtube.com/watch?v=3ZVMUlqgAQs"
+    },
     {
       "id": "ZTwQ_zAIng4",
       "title": "Brown Noise | Sleep & Tinnitus Relief 😴 #Shorts",
@@ -79,13 +86,6 @@
       "duration": "8 Hours",
       "published": "2026-04-12T00:54:30+00:00",
       "url": "https://www.youtube.com/watch?v=2XRAibq86ro"
-    },
-    {
-      "id": "bvCt9memAcA",
-      "title": "Rain on Window Sounds | 8 Hours of Gentle Rain for Deep Sleep",
-      "duration": "8 Hours",
-      "published": "2026-04-11T06:55:06+00:00",
-      "url": "https://www.youtube.com/watch?v=bvCt9memAcA"
     }
   ]
 }
