@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-6197205248872945">
+<link rel="canonical" href="https://ambientpassage.com/">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6197205248872945" crossorigin="anonymous"></script>
+<title>Ambient Passage Co — Sleep Sounds & Ambient Soundscapes</title>
+<meta name="description" content="8-hour ambient soundscapes for deep sleep, relaxation, and focus. Rain, fireplace, forest streams, and more.">
+<meta property="og:type"        content="website" />
+<meta property="og:url"         content="https://ambientpassage.com/" />
+<meta property="og:title"       content="Ambient Passage Co — Sleep Sounds &amp; Ambient Soundscapes" />
+<meta property="og:description" content="8-hour ambient soundscapes for deep sleep, relaxation, and focus. Rain, fireplace, forest streams, and more." />
+<meta name="twitter:card"       content="summary_large_image" />
+<meta name="twitter:title"      content="Ambient Passage Co — Sleep Sounds &amp; Ambient Soundscapes" />
+<meta name="twitter:description" content="8-hour ambient soundscapes for deep sleep, relaxation, and focus." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void:         #0B0905;
+    --cinder:       #1A1410;
+    --cinder-light: #231C14;
+    --border:       #1E1812;
+    --border-mid:   rgba(100,80,50,0.28);
+    --ember:        #C4843A;
+    --ember-dim:    rgba(196,132,58,0.12);
+    --ember-glow:   rgba(196,132,58,0.06);
+    --parchment:    #F0E8D8;
+    --parchment-dim:#C8B89A;
+    --label:        #6B5E4A;
+    --mist:         #8B9EB7;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--void); color: var(--parchment); font-family: 'Jost', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
+  #rain-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.22; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 3rem; background: linear-gradient(to bottom, rgba(11,9,5,0.95) 0%, transparent 100%); }
+  .nav-brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
+  .nav-arch { width: 28px; height: 32px; flex-shrink: 0; }
+  .nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+  .nav-wordmark-top { font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.24em; color: var(--parchment); text-transform: uppercase; }
+  .nav-wordmark-sub { font-family: 'Jost', sans-serif; font-size: 0.6rem; font-weight: 300; letter-spacing: 0.32em; color: var(--ember); text-transform: uppercase; margin-top: 0.15rem; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.18em; color: var(--label); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--parchment-dim); }
+
+  #hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6rem 2rem 4rem; z-index: 1; }
+  .hero-ember-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(ellipse, rgba(196,132,58,0.07) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -55%); pointer-events: none; }
+  .hero-arch { width: 90px; height: 100px; margin-bottom: 2.8rem; animation: archFloat 9s ease-in-out infinite; filter: drop-shadow(0 0 18px rgba(196,132,58,0.22)); }
+  @keyframes archFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.42em; color: var(--ember); text-transform: uppercase; margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 5.2rem); font-weight: 400; line-height: 1.08; letter-spacing: 0.04em; color: var(--parchment); margin-bottom: 0.25em; opacity: 0; animation: fadeUp 1s 0.5s forwards; }
+  .hero-title em { font-style: italic; color: var(--parchment-dim); }
+  .hero-rule { display: flex; align-items: center; gap: 1rem; margin: 1.6rem auto; width: 200px; opacity: 0; animation: fadeUp 1s 0.7s forwards; }
+  .hero-rule span { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--ember)); opacity: 0.4; }
+  .hero-rule span:last-child { background: linear-gradient(to left, transparent, var(--ember)); opacity: 0.4; }
+  .hero-rule-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ember); opacity: 0.7; }
+  .hero-sub { font-family: 'Jost', sans-serif; font-size: 1rem; font-weight: 300; color: var(--label); max-width: 500px; margin: 0 auto 3rem; line-height: 1.75; letter-spacing: 0.03em; opacity: 0; animation: fadeUp 1s 0.9s forwards; }
+  .hero-cta-group { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 1s 1.1s forwards; }
+
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.8rem 2rem; background: transparent; border: 1px solid var(--ember); color: var(--parchment); font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.35s; position: relative; overflow: hidden; }
+  .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--ember-dim); opacity: 0; transition: opacity 0.35s; }
+  .btn-primary:hover { color: var(--parchment); }
+  .btn-primary:hover::before { opacity: 1; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.8rem 2rem; background: transparent; border: 1px solid var(--border-mid); color: var(--label); font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.35s; }
+  .btn-secondary:hover { border-color: var(--label); color: var(--parchment-dim); }
+
+  .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; animation: fadeIn 1s 1.8s forwards; }
+  .hero-scroll span { font-size: 0.6rem; letter-spacing: 0.3em; color: var(--label); text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 38px; background: linear-gradient(to bottom, var(--label), transparent); animation: scrollPulse 2.2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+  section { position: relative; z-index: 1; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+  .section-label { font-family: 'Jost', sans-serif; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.38em; color: var(--ember); text-transform: uppercase; margin-bottom: 0.8rem; }
+  .section-heading { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.7rem); font-weight: 400; color: var(--parchment); line-height: 1.2; }
+  .section-heading em { font-style: italic; color: var(--parchment-dim); }
+
+  #sounds { padding: 7rem 0; background: linear-gradient(to bottom, transparent, var(--cinder) 18%, var(--cinder) 82%, transparent); }
+  .sounds-header { text-align: center; margin-bottom: 4rem; }
+  .sounds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1px; }
+  .sound-card { background: var(--void); border: 1px solid var(--border); padding: 2rem 1.8rem; position: relative; overflow: hidden; transition: all 0.4s; text-decoration: none; display: block; }
+  .sound-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--ember), transparent); opacity: 0; transition: opacity 0.4s; }
+  .sound-card:hover::after { opacity: 0.6; }
+  .sound-card:hover { background: var(--cinder); border-color: rgba(196,132,58,0.25); transform: translateY(-2px); }
+  .sound-icon { font-size: 1.6rem; margin-bottom: 1rem; display: block; }
+  .sound-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; color: var(--parchment); letter-spacing: 0.04em; margin-bottom: 0.4rem; }
+  .sound-desc { font-size: 0.85rem; color: var(--label); line-height: 1.6; font-weight: 300; }
+  .sound-tag { display: inline-block; margin-top: 1.1rem; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ember); border: 1px solid rgba(196,132,58,0.3); padding: 0.22rem 0.65rem; }
+
+  #videos { padding: 7rem 0; }
+  .videos-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+  .videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.8rem; min-height: 200px; }
+  .video-card { background: var(--cinder); border: 1px solid var(--border); overflow: hidden; transition: all 0.4s; text-decoration: none; display: block; }
+  .video-card:hover { border-color: rgba(196,132,58,0.3); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+  .video-thumb { position: relative; padding-bottom: 56.25%; overflow: hidden; background: var(--void); }
+  .video-thumb img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, opacity 0.4s; opacity: 0.8; }
+  .video-card:hover .video-thumb img { transform: scale(1.04); opacity: 0.95; }
+  .video-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,9,5,0.75) 0%, transparent 55%); display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+  .video-card:hover .video-thumb-overlay { background: linear-gradient(to top, rgba(11,9,5,0.55) 0%, transparent 55%); }
+  .video-play { width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(196,132,58,0.5); display: flex; align-items: center; justify-content: center; background: rgba(11,9,5,0.55); backdrop-filter: blur(4px); transition: all 0.3s; opacity: 0.8; }
+  .video-card:hover .video-play { border-color: var(--ember); opacity: 1; box-shadow: 0 0 22px rgba(196,132,58,0.3); }
+  .video-play svg { margin-left: 3px; }
+  .video-duration-badge { position: absolute; bottom: 0.6rem; right: 0.6rem; background: rgba(11,9,5,0.85); font-size: 0.62rem; font-weight: 400; letter-spacing: 0.14em; color: var(--parchment-dim); padding: 0.18rem 0.5rem; text-transform: uppercase; border: 1px solid var(--border); }
+  .video-meta { padding: 1.2rem 1.4rem; }
+  .video-title { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 400; color: var(--parchment-dim); letter-spacing: 0.02em; line-height: 1.45; }
+  .video-date { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.18em; color: var(--label); text-transform: uppercase; margin-top: 0.4rem; }
+  .videos-loading { grid-column: 1/-1; text-align: center; padding: 4rem 0; color: var(--label); font-size: 0.85rem; letter-spacing: 0.1em; font-weight: 300; }
+  .videos-loading .spinner { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border-mid); border-top-color: var(--ember); margin: 0 auto 1.2rem; animation: spin 1.2s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .video-more { text-align: center; margin-top: 3rem; }
+
+  #about { padding: 7rem 0; background: linear-gradient(to bottom, transparent, var(--cinder) 25%, var(--cinder) 75%, transparent); }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .about-arch-wrap { display: flex; align-items: center; justify-content: center; }
+  .about-arch { width: 220px; height: 244px; filter: drop-shadow(0 0 30px rgba(196,132,58,0.14)); }
+  .about-text p { color: var(--label); font-size: 1rem; font-weight: 300; margin-bottom: 1.2rem; line-height: 1.85; }
+  .about-text p em { color: var(--parchment-dim); font-style: italic; font-family: 'Playfair Display', serif; }
+  .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 400; color: var(--parchment); letter-spacing: 0.04em; }
+  .stat-label { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.2em; color: var(--label); text-transform: uppercase; margin-top: 0.25rem; }
+
+  #subscribe { padding: 6rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; background: var(--cinder); }
+  .subscribe-inner { max-width: 540px; margin: 0 auto; padding: 0 2rem; }
+  .subscribe-arch { width: 50px; height: 56px; margin: 0 auto 2rem; display: block; opacity: 0.7; filter: drop-shadow(0 0 10px rgba(196,132,58,0.2)); }
+  #subscribe .section-heading { margin-bottom: 0.8rem; }
+  .subscribe-sub { color: var(--label); margin-bottom: 2.2rem; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.02em; }
+  .subscribe-cta-row { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .subscribe-note { font-size: 0.68rem; color: var(--label); letter-spacing: 0.1em; opacity: 0.7; }
+
+  footer { padding: 3rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+  .footer-brand { display: flex; align-items: center; gap: 0.7rem; }
+  .footer-arch { width: 22px; height: 24px; opacity: 0.55; }
+  .footer-name { font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.24em; color: var(--label); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.18em; color: var(--label); text-decoration: none; text-transform: uppercase; transition: color 0.3s; opacity: 0.7; }
+  .footer-links a:hover { color: var(--parchment-dim); opacity: 1; }
+  .footer-copy { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--label); opacity: 0.4; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+  .fade-in-up { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; } .about-arch-wrap { display: none; }
+    .sounds-grid { grid-template-columns: 1fr 1fr; } .videos-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<canvas id="rain-canvas"></canvas>
+
+<nav>
+  <a href="#" class="nav-brand">
+    <svg class="nav-arch" viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 50 390 L 50 160 A 150 128 0 0 1 350 160 L 350 390" stroke="#C4843A" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M 90 390 L 90 180 A 110 94 0 0 1 310 180 L 310 390" stroke="#C4843A" stroke-width="3.2" fill="none" stroke-linecap="round" opacity="0.72"/>
+      <path d="M 130 390 L 130 204 A 70 60 0 0 1 270 204 L 270 390" stroke="#C4843A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.50"/>
+      <path d="M 170 390 L 170 232 A 30 26 0 0 1 230 232 L 230 390" stroke="#C4843A" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.28"/>
+      <line x1="32" y1="390" x2="368" y2="390" stroke="#C4843A" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="200" cy="295" r="3.5" fill="#FDECC8"/>
+    </svg>
+    <div class="nav-wordmark">
+      <span class="nav-wordmark-top">Ambient Passage</span>
+      <span class="nav-wordmark-sub">Co</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sounds">Sounds</a></li>
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="/blog">Guides</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-ember-glow"></div>
+  <svg class="hero-arch" viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="295" r="90" fill="#C4843A" opacity="0.03"/>
+    <circle cx="200" cy="295" r="65" fill="#C4843A" opacity="0.05"/>
+    <circle cx="200" cy="295" r="44" fill="#C4843A" opacity="0.08"/>
+    <circle cx="200" cy="295" r="28" fill="#E8A050" opacity="0.13"/>
+    <circle cx="200" cy="295" r="16" fill="#E8A050" opacity="0.22"/>
+    <circle cx="200" cy="295" r="8"  fill="#F0B060" opacity="0.55"/>
+    <circle cx="200" cy="295" r="3.5" fill="#FDECC8"/>
+    <path d="M 50 390 L 50 160 A 150 128 0 0 1 350 160 L 350 390" stroke="#C4843A" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M 90 390 L 90 180 A 110 94 0 0 1 310 180 L 310 390" stroke="#C4843A" stroke-width="3.2" fill="none" stroke-linecap="round" opacity="0.72"/>
+    <path d="M 130 390 L 130 204 A 70 60 0 0 1 270 204 L 270 390" stroke="#C4843A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.50"/>
+    <path d="M 170 390 L 170 232 A 30 26 0 0 1 230 232 L 230 390" stroke="#C4843A" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.28"/>
+    <line x1="32" y1="390" x2="368" y2="390" stroke="#C4843A" stroke-width="5" stroke-linecap="round"/>
+  </svg>
+  <p class="hero-eyebrow">Sleep · Relax · Drift</p>
+  <h1 class="hero-title">Ambient<br><em>Passage Co</em></h1>
+  <div class="hero-rule"><span></span><div class="hero-rule-dot"></div><span></span></div>
+  <p class="hero-sub">Eight hours of pure soundscape. Rain on glass, crackling fire, forest streams — crafted for deep sleep and quiet restoration.</p>
+  <div class="hero-cta-group">
+    <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="btn-primary">Watch on YouTube</a>
+    <a href="#videos" class="btn-secondary">Browse Soundscapes</a>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<section id="sounds">
+  <div class="section-inner">
+    <div class="sounds-header fade-in-up">
+      <p class="section-label">The Collection</p>
+      <h2 class="section-heading">Eight hours of <em>stillness</em></h2>
+    </div>
+    <div class="sounds-grid">
+      <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="sound-card fade-in-up"><span class="sound-icon">🌧</span><div class="sound-name">Rain on Window</div><p class="sound-desc">Steady, meditative rain against glass — the most searched sleep sound on YouTube.</p><span class="sound-tag">8 Hours</span></a>
+      <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="sound-card fade-in-up"><span class="sound-icon">⛈</span><div class="sound-name">Rain & Thunder</div><p class="sound-desc">Distant rolling thunder with deep rain. Low, gentle rumble — never sharp.</p><span class="sound-tag">8 Hours</span></a>
+      <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="sound-card fade-in-up"><span class="sound-icon">🔥</span><div class="sound-name">Crackling Fireplace</div><p class="sound-desc">Warm, rhythmic fire. Deeply comforting — extremely high listener retention.</p><span class="sound-tag">8 Hours</span></a>
+      <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="sound-card fade-in-up"><span class="sound-icon">🌊</span><div class="sound-name">Ocean Waves</div><p class="sound-desc">Dark shoreline, slow tide. Steady and hypnotic throughout the night.</p><span class="sound-tag">8 Hours</span></a>
+      <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="sound-card fade-in-up"><span class="sound-icon">🌲</span><div class="sound-name">Forest Stream</div><p class="sound-desc">Flowing water through a quiet forest. Timeless, evergreen demand year-round.</p><span class="sound-tag">8 Hours</span></a>
+      <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="sound-card fade-in-up"><span class="sound-icon">🏠</span><div class="sound-name">Fireplace & Rain</div><p class="sound-desc">Warm fire inside, rain beyond the glass. Two of the most beloved sleep sounds.</p><span class="sound-tag">8 Hours</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="section-inner">
+    <div class="videos-header fade-in-up">
+      <div><p class="section-label">Latest Uploads</p><h2 class="section-heading">Begin your <em>passage</em></h2></div>
+      <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="btn-secondary">View All on YouTube</a>
+    </div>
+    <div class="videos-grid" id="videos-grid">
+      <div class="videos-loading"><div class="spinner"></div>Loading soundscapes…</div>
+    </div>
+    <div class="video-more fade-in-up">
+      <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener" class="btn-primary">See All Videos on YouTube →</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="about-inner">
+      <div class="about-arch-wrap fade-in-up">
+        <svg class="about-arch" viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="295" r="120" fill="#C4843A" opacity="0.02"/>
+          <circle cx="200" cy="295" r="90"  fill="#C4843A" opacity="0.03"/>
+          <circle cx="200" cy="295" r="65"  fill="#C4843A" opacity="0.05"/>
+          <circle cx="200" cy="295" r="44"  fill="#C4843A" opacity="0.09"/>
+          <circle cx="200" cy="295" r="28"  fill="#E8A050" opacity="0.15"/>
+          <circle cx="200" cy="295" r="16"  fill="#E8A050" opacity="0.25"/>
+          <circle cx="200" cy="295" r="8"   fill="#F0B060" opacity="0.6"/>
+          <circle cx="200" cy="295" r="3.5" fill="#FDECC8"/>
+          <path d="M 50 390 L 50 160 A 150 128 0 0 1 350 160 L 350 390" stroke="#C4843A" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M 90 390 L 90 180 A 110 94 0 0 1 310 180 L 310 390" stroke="#C4843A" stroke-width="3.2" fill="none" stroke-linecap="round" opacity="0.72"/>
+          <path d="M 130 390 L 130 204 A 70 60 0 0 1 270 204 L 270 390" stroke="#C4843A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.50"/>
+          <path d="M 170 390 L 170 232 A 30 26 0 0 1 230 232 L 230 390" stroke="#C4843A" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.28"/>
+          <line x1="32" y1="390" x2="368" y2="390" stroke="#C4843A" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="about-text fade-in-up">
+        <p class="section-label">About</p>
+        <h2 class="section-heading" style="margin-bottom:1.5rem">A <em>passage</em> into rest</h2>
+        <p>Ambient Passage Co creates long-form soundscapes designed for one purpose: <em>genuine, uninterrupted rest</em>. Every sound is carefully chosen, looped for seamless playback, and held to a standard that carries you through a full night.</p>
+        <p>No music. No voice. No surprises. Just the sounds the mind releases to — rain on glass, fire in a quiet room, water over stone.</p>
+        <p>New soundscapes uploaded every week to <em>YouTube</em>, free for everyone.</p>
+        <div class="about-stats">
+          <div><div class="stat-num">8 hrs</div><div class="stat-label">Per Video</div></div>
+          <div><div class="stat-num">Weekly</div><div class="stat-label">New Uploads</div></div>
+          <div><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="subscribe">
+  <div class="subscribe-inner">
+    <svg class="subscribe-arch" viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="295" r="28" fill="#E8A050" opacity="0.15"/>
+      <circle cx="200" cy="295" r="14" fill="#F0B060" opacity="0.4"/>
+      <circle cx="200" cy="295" r="5"  fill="#FDECC8" opacity="0.9"/>
+      <path d="M 50 390 L 50 160 A 150 128 0 0 1 350 160 L 350 390" stroke="#C4843A" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M 90 390 L 90 180 A 110 94 0 0 1 310 180 L 310 390" stroke="#C4843A" stroke-width="3.2" fill="none" stroke-linecap="round" opacity="0.72"/>
+      <path d="M 130 390 L 130 204 A 70 60 0 0 1 270 204 L 270 390" stroke="#C4843A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.50"/>
+      <path d="M 170 390 L 170 232 A 30 26 0 0 1 230 232 L 230 390" stroke="#C4843A" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.28"/>
+      <line x1="32" y1="390" x2="368" y2="390" stroke="#C4843A" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <p class="section-label">Stay in the passage</p>
+    <h2 class="section-heading">New sounds, <em>every week</em></h2>
+    <p class="subscribe-sub">Subscribe on YouTube and never miss a release.</p>
+    <div class="subscribe-cta-row">
+      <a href="https://www.youtube.com/@AmbientPassageCo?sub_confirmation=1" target="_blank" rel="noopener" class="btn-primary">Subscribe on YouTube</a>
+      <p class="subscribe-note">Free forever — no account required to listen.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <svg class="footer-arch" viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 50 390 L 50 160 A 150 128 0 0 1 350 160 L 350 390" stroke="#C4843A" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M 90 390 L 90 180 A 110 94 0 0 1 310 180 L 310 390" stroke="#C4843A" stroke-width="3.2" fill="none" stroke-linecap="round" opacity="0.72"/>
+      <path d="M 130 390 L 130 204 A 70 60 0 0 1 270 204 L 270 390" stroke="#C4843A" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.50"/>
+      <line x1="32" y1="390" x2="368" y2="390" stroke="#C4843A" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="200" cy="295" r="3" fill="#FDECC8" opacity="0.8"/>
+    </svg>
+    <span class="footer-name">Ambient Passage Co</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" rel="noopener">YouTube</a></li>
+    <li><a href="https://www.instagram.com/AmbientPassageCo" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="/blog">Guides</a></li>
+    <li><a href="mailto:theambientpassage@gmail.com">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Ambient Passage Co — <a href="https://ambientpassage.com">AmbientPassage.com</a></p>
+</footer>
+
+<script>
+const canvas = document.getElementById('rain-canvas');
+const ctx = canvas.getContext('2d');
+let drops = [];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+function initDrops() {
+  drops = [];
+  const count = Math.floor(canvas.width / 8);
+  for (let i = 0; i < count; i++) drops.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, len: Math.random()*16+7, speed: Math.random()*1.1+0.4, opacity: Math.random()*0.28+0.04, width: Math.random()*0.55+0.18 });
+}
+function drawRain() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  drops.forEach(d => { ctx.beginPath(); ctx.moveTo(d.x,d.y); ctx.lineTo(d.x-d.len*0.14,d.y+d.len); ctx.strokeStyle=`rgba(139,158,183,${d.opacity})`; ctx.lineWidth=d.width; ctx.stroke(); d.y+=d.speed; if(d.y>canvas.height){d.y=-d.len;d.x=Math.random()*canvas.width;} });
+  requestAnimationFrame(drawRain);
+}
+window.addEventListener('resize',()=>{resize();initDrops();});
+resize(); initDrops(); drawRain();
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const siblings = Array.from(e.target.parentNode.children).filter(el=>el.classList.contains('fade-in-up'));
+      e.target.style.transitionDelay = `${(siblings.indexOf(e.target)%4)*0.08}s`;
+      e.target.classList.add('visible'); observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in-up').forEach(el=>observer.observe(el));
+
+async function loadVideos() {
+  const grid = document.getElementById('videos-grid');
+  try {
+    const res = await fetch('videos.json?t='+Date.now());
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    const videos = data.videos||[];
+    if (!videos.length) { grid.innerHTML='<div class="videos-loading">New soundscapes coming soon — <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" style="color:var(--ember)">subscribe on YouTube</a> to be notified.</div>'; return; }
+    grid.innerHTML = videos.slice(0,6).map(v => {
+      const thumb=`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`;
+      const url=`https://www.youtube.com/watch?v=${v.id}`;
+      const date=v.published?new Date(v.published).toLocaleDateString('en-US',{month:'long',year:'numeric'}):'';
+      return `<a href="${url}" target="_blank" rel="noopener" class="video-card fade-in-up">
+        <div class="video-thumb">
+          <img src="${thumb}" alt="${v.title}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${v.id}/hqdefault.jpg'">
+          <div class="video-thumb-overlay"><div class="video-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F0E8D8"><path d="M8 5v14l11-7z"/></svg></div></div>
+          <div class="video-duration-badge">${v.duration||'8 Hours'}</div>
+        </div>
+        <div class="video-meta">
+          <div class="video-title">${v.title}</div>
+          ${date?`<div class="video-date">${date}</div>`:''}
+        </div>
+      </a>`;
+    }).join('');
+    grid.querySelectorAll('.fade-in-up').forEach(el=>observer.observe(el));
+  } catch {
+    grid.innerHTML=`<div class="videos-loading">Visit the <a href="https://www.youtube.com/@AmbientPassageCo" target="_blank" style="color:var(--ember)">YouTube channel</a> to watch all soundscapes.</div>`;
+  }
+}
+loadVideos();
+</script>
+</body>
+</html>
